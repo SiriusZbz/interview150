@@ -38,6 +38,7 @@ void merge(vector<int>&nums1, int m, vector<int>&nums2, int n){
 	}
 }
 T(n)=O(m+n)
+
 //solution 2
 //add nums2 to the rear of nums1,then sort it
 void merge(vector<int>&  nums1, int m, vector<int>& nums2,int n){
@@ -46,3 +47,5 @@ void merge(vector<int>&  nums1, int m, vector<int>& nums2,int n){
 	}
 	sort(nums1.begin(),nums1.end());
 }
+T(n)=O((m+n)*log(m+n))   //quicksort time complexity
+

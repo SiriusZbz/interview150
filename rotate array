@@ -1,0 +1,42 @@
+//Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+//Solution1:reverse 3 times  [1,2,3,4,5,6]  k=3  -> [3,2,1,4,5,6] -> [3,2,1,6,5,4] ->[4,5,6,1,2,3]
+class Solution{
+public:
+    void reverse(vector<int> &nums, int left, int right){
+        int i=left,j=right;
+        while(i<j){
+            swap(nums[i],nums[j]);
+            i++;
+            j--;
+        }
+    }
+    void rotate(vector<int> &nums, int k){
+        int n = nums.size();
+        if(k>n){
+            k=k%n;
+        }
+        int l_length = n-k;
+        reverse(nums, 0, l_length-1);
+        reverse(nums, l_length, n-1);
+        reverse(nums, 0, n-1);
+    }
+};
+//Solution2:using an temp array,save the rotate result.[1,2,3,4,5,6]  k=3->temp:[4,5,6,1,2,3]
+class Solution{
+public:
+    void rotate(vector<int>& nums,int k){
+        int n = nums.size();
+        int temp[n];
+        k = k%n;
+        int l_len = n-k;
+        int i=0,j=l_len;
+        while(i<n){
+            temp[i]=nums[j%n];//temp[0]=nums[3]
+            i++;
+            j++;
+        }
+        for(int q=0;q<n;q++){ //the final results need be saved in nums
+            nums[q]=temp[q];
+        }
+    }
+};

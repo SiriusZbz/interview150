@@ -1,0 +1,19 @@
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+//solution：每次获得当天价格，找历史最低价格，作差。每天比较即可。
+class Solution{
+public:
+    int maxProfit(vector<int>& prices){
+        //1.定义最大利润：记录当天价格相对历史价格的利润最大值
+        //和最小价格：记录当前天之前最低价格的日子
+        int inf=1e9;
+        int minprice=inf;  //首先将最小价格设为无穷，后续比较会被替换
+        int maxprofit=0;  //记录当前最大利润，每天都会比较，竞争上岗
+        for(int price:prices){
+            maxprofit=max(maxprofit,price-minprice);  //当天价格与历史最低价格之差即为当天最大利润
+            minprice=min(price,minprice);
+        }
+        return maxprofit;
+    }
+};
